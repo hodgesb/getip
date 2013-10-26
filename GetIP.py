@@ -1,11 +1,7 @@
-# --- GetIP.py by Bob Hodges - October 2013 ---
+# --- GetIP.py by Bob Hodges - October 26th 2013 ---
 
 import urllib2
 import re
-
-# Open up website and save HTML to rawHTML variable
-#wSite = urllib2.urlopen('http://checkip.org')
-#rawHTML = wSite.read()
 
 def FindIP():
 	
@@ -20,7 +16,7 @@ def FindIP():
 	# Find the IP address entries and save them to ipList
 	ipList = re.search('\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}',rawHTML)
 	
-	# Populate ipAddress with the first IP found on the page.
+	# Populate ipAddress with the first IP in the ipList variable.
 	ipAddress =  ipList.group(0)
 	return ipAddress
 
@@ -30,18 +26,10 @@ def FindIP():
 	print '[-] An error occured, please check your internet connection.'
 	exit(0)
 
-def FindCity():
-
-	cityList = re.search('City: \w{0,40}',rawHTML)
-	cityName = cityList.group(0)
-	return cityName
- 
 def Main():
 
    myIP = FindIP()
-   myCity = FindCity()
    print '[+] Your public IP address is ' + myIP
-   print '[+] ' + myCity
 
 if __name__ == "__main__":
 
